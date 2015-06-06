@@ -1,0 +1,41 @@
+{
+  "name": "testing-window-fetch",
+  "version": "0.0.1",
+  "description": "Testing example for window.fetch",
+  "main": "src/main.js",
+  "scripts": {
+    "pretest": "./node_modules/.bin/eslint ./src",
+    "test": "./node_modules/karma/bin/karma start ./karma.config.js",
+    "build": "./node_modules/.bin/webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rjz/testing-window-fetch"
+  },
+  "keywords": [],
+  "author": "RJ Zaworski <rj@rjzaworski.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rjz/testing-window-fetch/issues"
+  },
+  "devDependencies": {
+    "babel-core": "5.2.15",
+    "babel-eslint": "3.0.1",
+    "babel-loader": "5.0.0",
+    "babel-runtime": "5.4.7",
+    "es5-shim": "4.1.3",
+    "eslint": "0.20.0",
+    "jasmine": "2.3.1",
+    "jasmine-core": "2.3.0",
+    "karma": "0.12.31",
+    "karma-jasmine": "0.3.5",
+    "karma-phantomjs-launcher": "0.1.4",
+    "karma-sinon": "1.0.4",
+    "karma-webpack": "1.5.1",
+    "sinon": "1.14.1",
+    "webpack": "1.8.11"
+  },
+  "dependencies": {
+    "whatwg-fetch": "0.9.0"
+  }
+}
