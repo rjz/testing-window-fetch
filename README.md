@@ -1,28 +1,16 @@
-ES6 Boilerplate
+Demo: testing window.fetch
 ===============================================================================
 
-[![Build Status](https://travis-ci.org/rjz/es6-client-boilerplate.svg?branch=master)](https://travis-ci.org/rjz/es6-client-boilerplate)
+[![Build Status](https://travis-ci.org/rjz/testing-window-fetch.svg?branch=master)](https://travis-ci.org/rjz/testing-window-fetch)
 
-A boilerplate for ES6 projects that includes:
-
-  * Babel (ES6 -> ES5)
-  * Test runner (karma/jasmine)
-  * Build (webpack)
-  * a copy of the MIT license, contributing guidelines, and an exquisite readme
+For illustration purposes only
 
 Installation
 -------------------------------------------------------------------------------
 
-Install and build:
+Install and run tests:
 
     $ npm install
-    $ npm run build
-
-Testing
--------------------------------------------------------------------------------
-
-Lint and run test suite:
-
     $ npm test
 
 License
