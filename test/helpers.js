@@ -19,6 +19,6 @@ export function jsonError (status, body) {
     }
   });
 
-  return Promise.reject(mockResponse);
+  return Promise.resolve(mockResponse);
 }
 

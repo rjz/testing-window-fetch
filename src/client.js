@@ -6,10 +6,14 @@ function apiError (status, message) {
   return err;
 }
 
-function onAPIError (res) {
-  return res.json().then(function (json) {
-    return Promise.reject(apiError(res.status, json.message));
-  });
+function filterAPIError (res) {
+  if (res.status > 399) {
+    return res.json().then(function (json) {
+      throw apiError(res.status, json.message);
+    });
+  }
+
+  return res.json();
 }
 
 function onAPIResponse (res) {
@@ -22,7 +26,7 @@ function onAPIResponse (res) {
 
 export const client = (path) => {
   return window.fetch(path)
-    .catch(onAPIError)
+    .then(filterAPIError)
     .then(onAPIResponse);
 };
 
