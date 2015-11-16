@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "pretest": "eslint ./src",
-    "test": "karma start ./karma.config.js",
+    "test": "karma start ./karma.config.js --single-run",
     "build": "webpack"
   },
   "repository": {
