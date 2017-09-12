@@ -21,4 +21,3 @@ export function jsonError (status, body) {
 
   return Promise.resolve(mockResponse);
 }
-
