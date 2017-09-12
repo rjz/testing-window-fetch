@@ -1,20 +1,19 @@
-var path = require('path');
-var project = require('./package');
+const path = require('path');
+const { name } = require('./package.json');
 
 module.exports = {
-  entry: './src/main.js',
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: project.name + '.js'
-  },
+  devtool: 'inline-source-map',
   module: {
-    loaders: [
-      { test: /\.js/, exclude: /node_modules/, loader: 'babel-loader?optional=runtime' }
-    ]
+    rules: [
+      {
+        test: /\.js/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+    ],
   },
   resolve: {
-    extensions: ['', '.js'],
-    moduleDirectories: ['node_modules']
-  }
+    extensions: ['.js'],
+    modules: ['node_modules']
+  },
 };
-
