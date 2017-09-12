@@ -1,4 +1,5 @@
-require('whatwg-fetch');
+import 'babel-polyfill';
+import 'whatwg-fetch';
 
 function apiError (status, message) {
   var err = new Error(message);
@@ -16,19 +17,14 @@ function filterAPIError (res) {
   return res.json();
 }
 
-function onAPIResponse (res) {
-  return res.json().then(function (json) {
-    return {
-      hello: json.hello.toUpperCase()
-    };
-  });
+function onAPIResponse (json) {
+  return {
+    hello: json.hello.toUpperCase()
+  };
 }
 
-export const client = (path) => {
+export default function client(path) {
   return window.fetch(path)
     .then(filterAPIError)
     .then(onAPIResponse);
-};
-
-export default client;
-
+}

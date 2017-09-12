@@ -1,12 +1,7 @@
-/*global sinon:false fetch:false */
-
-require('whatwg-fetch');
+import 'whatwg-fetch';
 
 import client from './client';
 import { jsonError, jsonOk } from '../test/helpers';
-
-// Expose runtime promise as global
-window.Promise = Promise;
 
 describe('.fetch', () => {
 
@@ -20,13 +15,12 @@ describe('.fetch', () => {
 
   describe('making a request via the client', () => {
     beforeEach(() => {
-      window.fetch.returns(new Promise(() => {}));
+      window.fetch.returns(Promise.reject(new Error('Just a stub')));
     });
 
-    it('behaves like any other sinon spy', () => {
-      client('/foobar');
-      expect(window.fetch.firstCall.args[0]).toBe('/foobar');
-    });
+    it('behaves like any other sinon spy', () =>
+      client('/foobar')
+        .catch(() => expect(window.fetch.firstCall.args[0]).toBe('/foobar')));
   });
 
   describe('stubbing response', () => {
@@ -42,14 +36,11 @@ describe('.fetch', () => {
       window.fetch.returns(Promise.resolve(res));
     });
 
-    it('formats response correctly', (done) => {
+    it('formats response correctly', () =>
       client('/foobar')
-        .catch(done)
         .then((json) => {
           expect(json.hello).toBe('WORLD');
-          done();
-        });
-    });
+        }));
   });
 
   describe('stubbing response (uses test helpers)', () => {
@@ -60,14 +51,11 @@ describe('.fetch', () => {
       }));
     });
 
-    it('formats response correctly', (done) => {
+    it('formats response correctly', () =>
       client('/foobar')
-        .catch(done)
         .then((json) => {
           expect(json.hello).toBe('WORLD');
-          done();
-        });
-    });
+        }));
   });
 
   describe('error response (uses test helpers)', () => {
@@ -78,14 +66,12 @@ describe('.fetch', () => {
       }));
     });
 
-    it('returns correct body', (done) => {
+    it('returns correct body', () =>
       client('/error-route')
         .catch(({ status, message }) => {
           expect(status).toBe(401);
           expect(message).toBe('authentication required');
-          done();
-        });
-    });
+        }));
   });
 });
 
